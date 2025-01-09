@@ -65,6 +65,21 @@ def update_employee(empid,name=None,position=None,salary=None):
         finally:
             conn.close()
 #update_employee(1,"Akki","Manager",300)
+
+def delete_employee(empid):
+    query="DELETE FROM emp where id=%s"
+    conn=connect_db()
+    if conn:
+        try:
+            with conn.cursor() as cursor:
+                cursor.execute(query,(empid,))
+                conn.commit()
+                print("Employee Details Deleted")
+        except Exception as e:
+            print("Error Deleting Details",e)
+        finally:
+            conn.close()
+#delete_employee(2)
             
                 
                 
