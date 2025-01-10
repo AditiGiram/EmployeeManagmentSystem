@@ -49,7 +49,7 @@ def view_employees():
             print("Error adding emp",e)
         finally:
             conn.close()
-view_employees()
+#view_employees()
 
 def update_employee(empid,name=None,position=None,salary=None):
     query="UPDATE emp SET name=COALESCE(%s,name),position=COALESCE(%s,position),salary=COALESCE(%s,salary) WHERE id=%s"
@@ -80,7 +80,52 @@ def delete_employee(empid):
         finally:
             conn.close()
 #delete_employee(2)
-            
+ 
+def main():
+     """Main Menu For Employe Mangament System"""
+     while True:
+         print("\n Employe Managment System")
+         print("1.Add Employe")
+         print("2.View Employee")
+         print("3.Update Employee")
+         print("4.Delete Employee")
+         print("5.Exit")
+         
+         choice=input("Enter Youe choice:")
+         if choice=="1":
+             name=input("Enter Name")
+             position=input("Enter Position")
+             salary=int(input("Enter Salary"))
+             add_employee(name,position,salary)
+             
+         elif choice=="2":
+             view_employees()
+         elif choice=="3":
+             empid=int(input("Enter Id")) or None
+             name=input("Enter Name") or None
+             position=input("Enter Position") or None
+             salary=input("Enter Salary:") or None
+             salary=int(salary) if salary else None
+             update_employee(empid,name,position,salary)
+             
+         elif choice=="4":
+             empid=int(input("Enter Id:"))
+             delete_employee(empid)
+             
+         elif choice=="5":
+             print("System Execueted")
+             break
+         else:
+             print("Invalid choice ")
+             
+if __name__=="__main__":
+    main()
+             
+             
+             
+             
+                  
+                
                 
                 
     
